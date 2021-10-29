@@ -44,7 +44,4 @@ jobs:
           terraform apply -auto-approve
       - name: test go app
         run: |
-          # disable command workflow processing
-          echo "::stop-commands::yoooo"
           go run test.go
-          echo "::yoooo::"
