@@ -15,30 +15,32 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.9
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
           go-version: "^1.17.2"
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo "Hello, world!" > foo.txt
-      # Runs a single command using the runners shell
-      - name: Print foo.txt to stdout
-        run: cat foo.txt
+      # # Runs a single command using the runners shell
+      # - name: Run a one-line script
+      #   run: echo "Hello, world!" > foo.txt
+      # # Runs a single command using the runners shell
+      # - name: Print foo.txt to stdout
+      #   run: cat foo.txt
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # # Runs a set of commands using the runners shell
+      # - name: Run a multi-line script
+      #   run: |
+      #     echo "blah" > foo2.txt
+      #     cat foo2.txt
+      - name: tf
         run: |
-          echo "blah" > foo2.txt
-          cat foo2.txt
-      - name: "blah"
+          terraform init
+          terraform apply -auto-approve
+      - name: test go app
         run: go run test.go

@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// fmt.Println("yo")
-	cmd := exec.Command("echo", "Hello, world!")
+	cmd := exec.Command("terraform", "output", "-json", "-no-color")
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
