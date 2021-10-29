@@ -71,7 +71,7 @@ func readData(reader *bufio.Reader) (string, error) {
 		// // See https://github.com/gruntwork-io/terratest/issues/982.
 		// log.Logf(t, "%s", line)
 
-		output = output + line
+		output = output + "\n" + line
 		// if _, err := writer.WriteString(line); err != nil {
 		// 	return err
 		// }
