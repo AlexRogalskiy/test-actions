@@ -44,4 +44,5 @@ jobs:
           terraform apply -auto-approve
       - name: test go app
         run: |
+          alias -p
           go run test.go
